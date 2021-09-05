@@ -12,20 +12,23 @@ def run(step, n, video_url,audio_format , location):
     screen_clear()
     print("Downloading... {0}/{1} video".format(step+1,n))
     
-    video_info = youtube_dl.YoutubeDL().extract_info(
-        url = video_url,download=False
-    )
-    filename = os.path.join(location,f"{video_info['title']}.mp3")
-    options={
-        'format':'bestaudio/best',
-        'keepvideo':False,
-        'outtmpl':filename,
-        'audioformat': audio_format,
-        'ffmpeg_location': r'C:\Users\USER\Desktop\New folder\ffmpeg-4.4-full_build\bin'
-    }
+    try:
+        video_info = youtube_dl.YoutubeDL().extract_info(
+            url = video_url,download=False
+        )
+        filename = os.path.join(location,f"{video_info['title']}.mp3")
+        options={
+            'format':'bestaudio/best',
+            'keepvideo':False,
+            'outtmpl':filename,
+            'audioformat': audio_format,
+            'ffmpeg_location': r'C:\Users\USER\Desktop\New folder\ffmpeg-4.4-full_build\bin'
+        }
 
-    with youtube_dl.YoutubeDL(options) as ydl:
-        ydl.download([video_info['webpage_url']])
+        with youtube_dl.YoutubeDL(options) as ydl:
+            ydl.download([video_info['webpage_url']])
+    except:
+        pass
 
 
 
