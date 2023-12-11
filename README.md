@@ -1,5 +1,5 @@
 # NKT
-Code linh tinh của Tòn
+Code linh tinh của Toàn
 
 ```
 import numpy as np
